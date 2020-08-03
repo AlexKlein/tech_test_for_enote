@@ -35,6 +35,6 @@ if __name__ == '__main__':
     print(delay_db())
     check_data()
 
-    get_raw_data(models.Transactions)
-    get_raw_data(models.Accounts)
-    get_raw_data(models.Persons)
+    print(get_raw_data(models.Transactions))
+    print(get_raw_data(models.Accounts))
+    print(get_raw_data(models.Persons))

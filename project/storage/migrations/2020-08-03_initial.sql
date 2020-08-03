@@ -6,9 +6,13 @@ create table if not exists stage.transactions_fct (id_transaction     integer   
                                                    transaction_date   date        not null,
                                                    transaction_amount numeric     not null);
 
+create index transactions_fct_acc on stage.transactions_fct (id_account, transaction_date);
+
 create table if not exists stage.accounts_dim (id_account   numeric not null,
                                                id_person    numeric not null,
                                                account_type varchar(16));
+
+create unique index accounts_dim_person_acc on stage.accounts_dim (id_account, id_person);
 
 create table if not exists stage.persons_dim (id_person    integer not null,
                                               name         varchar(128),
@@ -19,6 +23,9 @@ create table if not exists stage.persons_dim (id_person    integer not null,
                                               email        varchar(512),
                                               phone_number varchar(16),
                                               birth_date   date);
+
+create unique index persons_dim_pk on stage.persons_dim
+(id_person);
 
 create schema if not exists data_mart;
 

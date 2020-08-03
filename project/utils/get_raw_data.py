@@ -42,6 +42,7 @@ def insert_set(data_set, model_name) -> str:
 
 
 def upload_csv_files(model_name):
+
     if model_name._meta.table_name == 'transactions_fct':
         headers = ['id_transaction', 'id_account', 'transaction_type', 'transaction_date', 'transaction_amount']
         date_filed = 'transaction_date'
@@ -64,9 +65,8 @@ def upload_csv_files(model_name):
                            names=headers)
 
     data_set = transform_data(data_set, date_filed, model_name._meta.id)
-
-    print(insert_set(data_set, model_name))
+    return insert_set(data_set, model_name)
 
 
 def start_up(model_name):
-    upload_csv_files(model_name)
+    return upload_csv_files(model_name)
